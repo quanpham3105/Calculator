@@ -3,3 +3,9 @@
     width: 150px;
     height: 50px;
 }
+
+#numpad {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90px;
+}

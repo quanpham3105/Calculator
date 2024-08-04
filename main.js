@@ -1,8 +1,5 @@
 let displayValue = '';
-let first;
-let second;
 let operator;
-let operatorPressed = false;
 
 
 function calculate(operator, firstNumber, secondNumber) {
@@ -16,7 +13,7 @@ function calculate(operator, firstNumber, secondNumber) {
     if (operator == '*') {
         answer = multiply(firstNumber, secondNumber);
     }
-    if (operator == '/') {
+    if (operator == '÷') {
         answer = divide(firstNumber, secondNumber);
     }
     return answer;
@@ -106,20 +103,47 @@ nine.addEventListener('click', () => {
     displayValue += '9';
 });
 addTwo.addEventListener('click', () => {
-    display.innerHTML += ' + ';
+    const values = displayValue.split(' ');
+    if (values.length === 3) {
+        let temp = calculate(values[1], values[0], values[2]);
+        display.innerHTML = +temp;
+        displayValue = temp;
+    }
+    display.innerHTML = ' + ';
     displayValue += ' + '
 });
 subtractTwo.addEventListener('click', () => {
-    display.innerHTML += ' - ';
+    const values = displayValue.split(' ');
+    if (values.length === 3) {
+        let temp = calculate(values[1], values[0], values[2]);
+        display.innerHTML = +temp;
+        displayValue = temp;
+    }
+    display.innerHTML = ' - ';
     displayValue += ' - '
 });
 multiplyTwo.addEventListener('click', () => {
-    display.innerHTML += ' * ';
+    const values = displayValue.split(' ');
+    if (values.length === 3) {
+        let temp = calculate(values[1], values[0], values[2]);
+        display.innerHTML = +temp;
+        displayValue = temp;
+    }
+    display.innerHTML = ' * ';
     displayValue += ' * '
 });
 divideTwo.addEventListener('click', () => {
-    display.innerHTML += ' / ';
-    displayValue += ' / '
+    const values = displayValue.split(' ');
+    if (values[2] === '0' || values[2] === 0) {
+        display.innerHTML = 'You can\'t divide by 0';
+    }
+    if (values.length === 3) {
+        let temp = calculate(values[1], values[0], values[2]);
+        display.innerHTML = +temp;
+        displayValue = temp;
+    }
+    display.innerHTML = ' ÷ ';
+    displayValue += ' ÷ '
 });
 clear.addEventListener('click', () => {
     display.innerHTML = '';
@@ -128,15 +152,15 @@ clear.addEventListener('click', () => {
 
 equal.addEventListener('click', () => {
     const values = displayValue.split(' ');
-    if (values.length > 3) {
-        let first = +calculate(values[1], values[0], values[2]);
-        for (let i = 3; i < values.length; i += 2) {
-            let x = +calculate(values[i], first, values[i + 1]);
-            first = first + x;
-        }
-        display.innerHTML = first;
-        displayValue = first;
-    }
+    // if (values.length > 3) {
+    //     let first = +calculate(values[1], values[0], values[2]);
+    //     for (let i = 3; i < values.length; i += 2) {
+    //         let x = +calculate(values[i], first, values[i + 1]);
+    //         first = first + x;
+    //     }
+    //     display.innerHTML = first;
+    //     displayValue = first;
+    // }
     let temp = calculate(values[1], values[0], values[2]);
     display.innerHTML = +temp;
     displayValue = temp;
