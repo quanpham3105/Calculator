@@ -60,8 +60,12 @@ const multiplyTwo = document.querySelector("#multiply");
 const divideTwo = document.querySelector("#divide");
 const clear = document.querySelector("#clear");
 const equal = document.querySelector("#equal");
+const decimal = document.querySelector("#decimal");
 
-
+decimal.addEventListener('click', () => {
+    display.innerHTML += '.';
+    displayValue += '.'
+});
 zero.addEventListener('click', () => {
     display.innerHTML = 0;
     displayValue += '0'
@@ -152,15 +156,6 @@ clear.addEventListener('click', () => {
 
 equal.addEventListener('click', () => {
     const values = displayValue.split(' ');
-    // if (values.length > 3) {
-    //     let first = +calculate(values[1], values[0], values[2]);
-    //     for (let i = 3; i < values.length; i += 2) {
-    //         let x = +calculate(values[i], first, values[i + 1]);
-    //         first = first + x;
-    //     }
-    //     display.innerHTML = first;
-    //     displayValue = first;
-    // }
     let temp = calculate(values[1], values[0], values[2]);
     display.innerHTML = +temp;
     displayValue = temp;
